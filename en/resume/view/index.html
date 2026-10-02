@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="View and download the latest English résumé directly as a PDF."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#10131c" />
+    <title>Résumé</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/css/resume-view.css" />
+    <link rel="alternate" hreflang="fa" href="https://mohamadjavadkarimi.ir/fa/resume/view/" />
+    <link rel="alternate" hreflang="en" href="https://mohamadjavadkarimi.ir/en/resume/view/" />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("site-theme");
+        if (savedTheme === "light" || savedTheme === "dark")
+          document.documentElement.dataset.theme = savedTheme;
+      } catch {}
+    </script>
+  </head>
+  <body class="resume-view-page locale-en" data-locale="en">
+    <header class="resume-view-toolbar">
+      <a class="resume-view-back" href="/en/resume/">Back to website</a>
+      <a class="resume-view-language" href="/fa/resume/view/" lang="fa" aria-label="نمایش رزومه به فارسی">فا</a>
+    </header>
+    <main id="resume-preview" class="resume-preview" aria-busy="true">
+      <p class="resume-view-message" role="status">Loading the latest résumé…</p>
+    </main>
+    <button
+      class="resume-download-fab"
+      type="button"
+      data-download-resume
+      aria-label="Download résumé directly as a PDF"
+      disabled
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 3v12m0 0 4-4m-4 4-4-4"></path>
+        <path d="M5 16v4h14v-4"></path>
+      </svg>
+      <span>Download PDF</span>
+    </button>
+    <p id="resume-download-status" class="resume-screen-reader" aria-live="polite"></p>
+    <script src="/js/resume-pdf.js" defer></script>
+    <script src="/js/resume-view.js" defer></script>
+  </body>
+</html>
