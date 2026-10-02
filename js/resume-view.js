@@ -42,7 +42,9 @@
     "ble.ir": { key: "bale", mark: "BL", label: "Bale" },
   };
 
-  const localeFromPath = location.pathname.match(/^\/(fa|en)(?:\/|$)/)?.[1];
+  const localeMatch = location.pathname.match(/^(.*)\/(fa|en)(?:\/|$)/);
+  const localeFromPath = localeMatch?.[2];
+  const localeBasePath = localeMatch?.[1] || "";
   const locale = localeFromPath || document.body.dataset.locale;
   const labels = copy[locale];
 
@@ -373,8 +375,9 @@
       throw new Error("Résumé language does not match its route.");
     }
 
-    const resumeUrl = new URL(`/${locale}/resume/`, location.origin);
-    const contactUrl = new URL(`/${locale}/contact/`, location.origin);
+    const localeRoot = new URL(`${localeBasePath}/${locale}/`, location.origin);
+    const resumeUrl = new URL("resume/", localeRoot);
+    const contactUrl = new URL("contact/", localeRoot);
     const options = { cache: "no-cache", credentials: "same-origin" };
     const [resumeResponse, contactResponse] = await Promise.all([
       fetch(resumeUrl, options),
